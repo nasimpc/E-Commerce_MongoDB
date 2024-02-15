@@ -3,25 +3,25 @@ const MongoClient = mongodb.MongoClient;
 
 let _db;
 
-const mongoConnect = (callBack) => {
+const mongoConnect = callback => {
   MongoClient.connect('mongodb+srv://nasim:kapsuc-mukMik-1dittu@cluster0.9b4haud.mongodb.net/shop?retryWrites=true&w=majority')
     .then(client => {
-      console.log('Connected');
+      console.log('Connected!');
       _db = client.db();
-      callBack();
+      callback();
     })
     .catch(err => {
       console.log(err);
       throw err;
     });
 };
-const getDB = () => {
 
+const getDb = () => {
   if (_db) {
     return _db;
   }
-  throw 'no database found!';
+  throw 'No database found!';
+};
 
-}
 exports.mongoConnect = mongoConnect;
-exports.getDB = getDB;
+exports.getDb = getDb;
